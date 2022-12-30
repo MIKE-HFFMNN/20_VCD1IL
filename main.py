@@ -21,8 +21,8 @@ g = 9.81
 t = 1
 
 #Lookup table of friction values
-myStatic = [0.65, 0.4, 0.2, 0.1, 0.1, 0, 0]
-myDynamic = [0.5, 0.35, 0.15, 0.08, 0.05, 0.35, 0.3]
+ms = [0.65, 0.4, 0.2, 0.1, 0.1, 0, 0]
+md = [0.5, 0.35, 0.15, 0.08, 0.05, 0.35, 0.3]
 
 #Definition of basic formulas
 def normal(v):
@@ -33,6 +33,10 @@ def danger(v):
     return normal(v)/2
 def distance(v):
     return reaction(v)+normal(v)
+"""
+def Fn:
+    return rs*g*m
+"""
 
 #User input velocity
 root=Tk()
@@ -58,7 +62,7 @@ mainloop()
 
 #User selection of road surface
 root = tk.Tk()
-servs = ['Concrete', 'Ice', 'Water', 'Gravel', 'Sand']
+servs = ['concrete', 'ice', 'water', 'gravel', 'sand']
 svar = tk.StringVar()
 svar.set(servs[0])
 sr = servs[0]
@@ -71,7 +75,7 @@ root.mainloop()
 
 #User selection of road condition
 root = tk.Tk()
-servs = ['Dry', 'Wet', 'Aquaplaning']
+servs = ['dry', 'wet', 'aquaplaning']
 svar = tk.StringVar()
 svar.set(servs[0])
 sc = servs[0]
@@ -82,34 +86,60 @@ drop = tk.OptionMenu(root, svar, command = _get, *servs)
 drop.grid(row=2, column=1)
 root.mainloop()
 
-"""
-roadoptions = ['concrete', 'ice', 'gravel', 'sand']
-questions = [
-    inquirer.List('road',
-                  message="Select a road option (1, 2, 3 or 4)",
-                  choices=roadoptions,
-                  ),
-]
-answer = inquirer.prompt(questions)
-print(answer)
-"""
-
 #Access Excel file for corresponding surface road (sr) friction values
-wb = load_workbook('20_VCD1IL_CODING.xlsx')
+wb = load_workbook('20_VCD1IL_CODING.xlsx', data_only=True)
 print(wb.sheetnames)
-ws = wb["Sheet1"]
-print(ws['C2'].value)
-"""
-if sr == 'concrete', sc == 'dry'
-elif sr == 'concrete', sc == 'wet'
-"""
+ws = wb["Friction values"]
 
-#Formulas for
-#Fr = µ from excel*m*g
-#Wk = (m*(v**2))/2
-#Wf = integrate.quad(lambda x: special.jv(2.5,x), 0, 4.5)
+if sr == 'concrete' and sc == 'dry':
+    rs = str(ws['C2'].value)
+    print("rs: ", rs)
+    rd = str(ws['D2'].value)
+    print("rd: ", rd)
+elif sr == 'concrete' and sc == 'wet':
+    rs = str(ws['C3'].value)
+    print("rs: ",rs)
+    rd = str(ws['D3'].value)
+    print("rd: ", rd)
+elif sr == 'ice' and sc == 'dry':
+    rs = str(ws['C4'].value)
+    print("rs: ",rs)
+    rd = str(ws['D4'].value)
+    print("rd: ", rd)
+elif sr == 'ice' and sc == 'wet':
+    rs = str(ws['C5'].value)
+    print("rs: ",rs)
+    rd = str(ws['D5'].value)
+    print("rd: ", rd)
+elif sr == 'water' and sc == 'aquaplaning':
+    rs = str(ws['C6'].value)
+    print("rs: ",rs)
+    rd = str(ws['D6'].value)
+    print("rd: ", rd)
+elif sr == 'gravel' and sc == 'dry':
+    rs = str(ws['C7'].value)
+    print("rs: ",rs)
+    rd = str(ws['D7'].value)
+    print("rd: ", rd)
+elif sr == 'sand' and sc == 'dry':
+    rs = str(ws['C8'].value)
+    print("rs: ",rs)
+    rd = str(ws['D8'].value)
+    print("rd: ", rd)
+else:
+    print("Failure - option not possible")
 
-#print(f'normal: {normal(v)}')
-#print(f'reaction: {reaction(v)}')
-#print(f'danger: {danger(v)}')
-#9print(f'distance: {distance(v)}')
+"""
+Formulas for
+Fr = µ from excel*m*g
+Wk = (m*(v**2))/2
+Wf = integrate.quad(lambda x: special.jv(2.5,x), 0, 4.5)
+
+print(f'normal: {normal(v)}')
+print(f'reaction: {reaction(v)}')
+print(f'danger: {danger(v)}')
+9print(f'distance: {distance(v)}')
+"""
+#Doublecheck µ values
+print(rs)
+print(rd)
