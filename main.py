@@ -6,6 +6,10 @@ import math
 from openpyxl import load_workbook
 import tkinter as tk
 from tkinter import *
+import argparse
+
+#Setup argparser
+arg_parser_ = argparse.ArgumentParser(description="Process some integers.")
 
 #Shows and defines current working directory and files
 print(os.getcwd())
