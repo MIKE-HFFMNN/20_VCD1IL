@@ -25,17 +25,17 @@ m = 0.0
 y = 0.0
 
 #Definition of basic formulas from lecture
-def calcsn(vm):
+def calcsn(v):
     global sn
-    sn = float(pow(vm/10, 2))
+    sn = float(pow(v/10, 2))
     return sn
-def calcsd(vm):
+def calcsd(v):
     global sd
-    sd = float(pow(vm/10, 2)/2)
+    sd = float(pow(v/10, 2)/2)
     return sd
-def calcsrc(vm):
+def calcsrc(v):
     global src
-    src = float((vm/10)*3)
+    src = float((v/10)*3)
     return src
 def calcst(src, sn):
     global st
@@ -77,7 +77,6 @@ def inputv():
             error.pack()
             print("Error - please enter velocity >0 and <300 kph!")
             mainloop()
-            exit()
 
 label = tk.Label(text="Hello! Please insert velocity:",fg="black",width=30,height=5)
 label.pack()
@@ -124,7 +123,6 @@ def inputy():
             error.pack()
             print("Error - please enter inclination <45°!")
             mainloop()
-            exit()
 
 label = tk.Label(text="Please insert inclination angle:",fg="black",width=30,height=5)
 label.pack()
@@ -171,7 +169,7 @@ drop.grid(row=2, column=1)
 root.mainloop()
 
 #Call and calculate distance s according rule of thumb formula from class for comparison
-sn = calcsn(vm)
+sn = calcsn(v)
 print("Rule of thumb distance (normal) :", sn, "m")
 sd = calcsd(v)
 print("Rule of thumb distance (danger) :", sd, "m")
