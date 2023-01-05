@@ -25,9 +25,9 @@ m = 0.0
 y = 0.0
 
 #Definition of basic formulas from lecture
-def calcsn(v):
+def calcsn(vm):
     global sn
-    sn = float(pow(v/10, 2))
+    sn = float(pow(vm/10, 2))
     return sn
 def calcsd(v):
     global sd
@@ -57,7 +57,7 @@ def calctmax(rs, g, y, vm):
 #User input velocity (https://realpython.com/python-gui-tkinter/)
 root = Tk()
 root.title('Breaking distance simulation')
-root.geometry('258x195')
+root.geometry('285x125')
 def inputv():
     global v
     global vm
@@ -171,7 +171,7 @@ drop.grid(row=2, column=1)
 root.mainloop()
 
 #Call and calculate distance s according rule of thumb formula from class for comparison
-sn = calcsn(v)
+sn = calcsn(vm)
 print("Rule of thumb distance (normal) :", sn, "m")
 sd = calcsd(v)
 print("Rule of thumb distance (danger) :", sd, "m")
