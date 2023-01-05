@@ -29,13 +29,13 @@ def calcsn(vm):
     global sn
     sn = float(pow(vm/10, 2))
     return sn
-def calcsd(v):
+def calcsd(vm):
     global sd
-    sd = float(pow(v/10, 2)/2)
+    sd = float(pow(vm/10, 2)/2)
     return sd
-def calcsrc(v):
+def calcsrc(vm):
     global src
-    src = float((v/10)*3)
+    src = float((vm/10)*3)
     return src
 def calcst(src, sn):
     global st
@@ -57,7 +57,7 @@ def calctmax(rs, g, y, vm):
 #User input velocity (https://realpython.com/python-gui-tkinter/)
 root = Tk()
 root.title('Breaking distance simulation')
-root.geometry('285x125')
+root.geometry('258x215')
 def inputv():
     global v
     global vm
@@ -73,7 +73,7 @@ def inputv():
             print("Velocity input: ", vm, " m/s")
             return vm, v
         else:
-            error = tk.Label(text="Error - please enter velocity >0 and <300 kph!", fg="black", width=30, height=5)
+            error = tk.Label(text="Error - please enter velocity >0 and <300 kph!", fg="black", width=40, height=5)
             error.pack()
             print("Error - please enter velocity >0 and <300 kph!")
             mainloop()
@@ -93,7 +93,7 @@ mainloop()
 """
 #User input vehicle mass
 root = Tk()
-root.geometry('258x195')
+root.geometry('258x215')
 def inputm():
     m = float(txt_Box.get("1.0", "end-1c"))
     print("Mass input: ", m, " kg")
@@ -107,7 +107,7 @@ mainloop()
 #User input inclination
 root = Tk()
 root.title('Breaking distance simulation')
-root.geometry('258x195')
+root.geometry('258x215')
 def inputy():
     global y
     try:
@@ -139,7 +139,7 @@ mainloop()
 #User selection of road surface via dropdown (https://stackoverflow.com/questions/52757496/how-to-make-tkinter-drop-down-to-save-data-in-python-3)
 root = tk.Tk()
 root.title('Breaking distance simulation')
-root.geometry('258x195')
+root.geometry('258x215')
 servs = ['concrete', 'ice', 'water', 'gravel', 'sand']
 svar = tk.StringVar()
 svar.set(servs[0])
@@ -156,7 +156,7 @@ root.mainloop()
 #User selection of road condition via dropdown
 root = tk.Tk()
 root.title('Breaking distance simulation')
-root.geometry('258x195')
+root.geometry('258x215')
 servs = ['dry', 'wet', 'aquaplaning']
 svar = tk.StringVar()
 svar.set(servs[0])
