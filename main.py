@@ -61,7 +61,11 @@ root.geometry('258x195')
 def inputv():
     global v
     global vm
-    v = int(txt_Box.get("1.0", "end-1c"))
+    try:
+        v = float(box.get("1.0", "end-1c"))
+    except ValueError:
+        answer.config(text="Please enter a number!")
+
     while True:
         if v >= 1 and v <= 300:
             print("Velocity input: ", v, " kp/h")
@@ -74,12 +78,16 @@ def inputv():
             print("Error - please enter velocity >0 and <300 kph!")
             mainloop()
             exit()
-greeting = tk.Label(text="Hello! Please insert velocity:",fg="black",width=30,height=5)
-greeting.pack()
-txt_Box = Text(root, height=1, width=8)
-txt_Box.pack()
-button = Button(root, height=1, width=16, text="input velocity in kp/h", command=lambda: inputv())
+
+label = tk.Label(text="Hello! Please insert velocity:",fg="black",width=30,height=5)
+label.pack()
+box = Text(root, height=1, width=8)
+box.pack()
+button = Button(root, height=1, width=16, text="Enter velocity in kp/h", command=lambda: inputv())
 button.pack()
+answer = Label(root, text=" ")
+answer.pack(pady=20)
+
 mainloop()
 
 """
@@ -91,7 +99,7 @@ def inputm():
     print("Mass input: ", m, " kg")
 txt_Box = Text(root, height= 1, width=8)
 txt_Box.pack()
-button = Button(root, height=1, width= 16, text="input mass in kg", command=lambda: inputm())
+button = Button(root, height=1, width= 16, text="Enter mass in kg", command=lambda: inputm())
 button.pack()
 mainloop()
 """
@@ -102,7 +110,11 @@ root.title('Breaking distance simulation')
 root.geometry('258x195')
 def inputy():
     global y
-    y = float(txt_Box.get("1.0", "end-1c"))
+    try:
+        y = float(box.get("1.0", "end-1c"))
+    except ValueError:
+        answer.config(text="Please enter a number!")
+
     while True:
         if y >= 0 and y <= 45:
             print("Inclination input: ", y, "°")
@@ -114,12 +126,14 @@ def inputy():
             mainloop()
             exit()
 
-greeting = tk.Label(text="Please insert inclination angle:",fg="black",width=30,height=5)
-greeting.pack()
-txt_Box = Text(root, height=1, width=8)
-txt_Box.pack()
-button = Button(root, height=1, width=16, text="input inclination in °", command=lambda: inputy())
+label = tk.Label(text="Please insert inclination angle:",fg="black",width=30,height=5)
+label.pack()
+box = Text(root, height=1, width=8)
+box.pack()
+button = Button(root, height=1, width=16, text="Enter inclination in °", command=lambda: inputy())
 button.pack()
+answer = Label(root, text=" ")
+answer.pack(pady=20)
 mainloop()
 
 #User selection of road surface via dropdown (https://stackoverflow.com/questions/52757496/how-to-make-tkinter-drop-down-to-save-data-in-python-3)
@@ -226,9 +240,10 @@ def calcs(sr, sc, y, vm):
         while i < len(tv):
             ti = tv[1] - tv[0]
             sv[i] = vm * tv[i] - 1/2 * calcamax(rs, g, y) * pow(tv[i], 2)
-            vv[i+1] = vv[i] - calcamax(rs, g, y) * ti
+            #vv[i + 1] = vv[i] - calcamax(rs, g, y) * ti
             if vv[i] <= 0:
                 break
+            vv[i + 1] = vv[i] - calcamax(rs, g, y) * ti
             i += 1
         print(tv, "[s]")
         print(sv, "[m]")
@@ -242,11 +257,9 @@ sa = array[1]
 va = array[2]
 print(array)
 
-
-
 #Plotting of velocity v and distance s over time t (https://stackoverflow.com/questions/14762181/adding-a-y-axis-label-to-secondary-y-axis-in-matplotlib)
-# (https://stackoverflow.com/questions/5484922/secondary-axis-with-twinx-how-to-add-to-legend)
-# (https://stackoverflow.com/questions/22642511/change-y-range-to-start-from-0-with-matplotlib)
+#Twin axis (https://stackoverflow.com/questions/5484922/secondary-axis-with-twinx-how-to-add-to-legend)
+#Start from 0 (https://stackoverflow.com/questions/22642511/change-y-range-to-start-from-0-with-matplotlib)
 fig, ax1 = plt.subplots()
 ax2 = ax1.twinx()
 
