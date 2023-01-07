@@ -6,3 +6,6 @@ Coding Assignment
 Student: Mike Hoffmann (52209624)
 Package Manager: PyCharm
 Due Date: 31.01.2023
+
+Note: There might be similarities in code and in source documents with Mr. Johannes Aumayr's coding submission due to alignments and discussions.
+Each one's coding has been done on own behalf.
