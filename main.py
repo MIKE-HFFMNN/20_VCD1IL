@@ -11,12 +11,6 @@ import argparse
 #Setup argparser
 arg_parser_ = argparse.ArgumentParser(description="Process some integers.")
 
-#Shows and defines current working directory and files
-print(os.getcwd())
-path = r'C:\Users\va23007122\PycharmProjects\Test'
-files = list(filter(os.path.isfile, os.listdir()))
-print(files)
-
 #Definition of basic variables and start values
 g = 9.81
 v = 0.0
