@@ -49,6 +49,7 @@ def calctmax(rs, g, y, vm):
     return vm/amax
 
 #User input velocity (https://realpython.com/python-gui-tkinter/)
+#Attention: After input window needs to be closed with click on X
 root = Tk()
 root.title('Breaking distance simulation')
 root.geometry('258x215')
@@ -98,6 +99,7 @@ mainloop()
 """
 
 #User input inclination
+#Attention: After input window needs to be closed with click on X
 root = Tk()
 root.title('Breaking distance simulation')
 root.geometry('258x215')
@@ -129,37 +131,41 @@ answer.pack(pady=20)
 mainloop()
 
 #User selection of road surface via dropdown (https://stackoverflow.com/questions/52757496/how-to-make-tkinter-drop-down-to-save-data-in-python-3)
+#Attention: After input window needs to be closed with click on X
 root = tk.Tk()
 root.title('Breaking distance simulation')
 root.geometry('258x215')
-servs = ['concrete', 'ice', 'water', 'gravel', 'sand']
-svar = tk.StringVar()
-svar.set(servs[0])
-sr = servs[0]
 def _get(cur):
     global sr
     sr = str(cur)
     print("Road surface input: ", sr)
     return sr
+servs = ['concrete', 'ice', 'water', 'gravel', 'sand']
+svar = tk.StringVar()
+svar.set(servs[0])
+sr = servs[0]
 drop = tk.OptionMenu(root, svar, command = _get, *servs)
 drop.grid(row=2, column=1)
+drop.pack(pady=20)
 root.mainloop()
 
 #User selection of road condition via dropdown
+#Attention: After input window needs to be closed with click on X
 root = tk.Tk()
 root.title('Breaking distance simulation')
 root.geometry('258x215')
-servs = ['dry', 'wet', 'aquaplaning']
-svar = tk.StringVar()
-svar.set(servs[0])
-sc = str(servs[0])
 def _get(cur):
     global sc
     sc = str(cur)
     print("Road condition input: ", sc)
     return sc
+servs = ['dry', 'wet', 'aquaplaning']
+svar = tk.StringVar()
+svar.set(servs[0])
+sc = str(servs[0])
 drop = tk.OptionMenu(root, svar, command = _get, *servs)
 drop.grid(row=2, column=1)
+drop.pack(pady=20)
 root.mainloop()
 
 #Call and calculate distance s according rule of thumb formula from class for comparison
